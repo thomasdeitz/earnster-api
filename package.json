@@ -1,0 +1,22 @@
+{
+  "name": "earnster-api",
+  "version": "0.0.1",
+  "description": "An API project serving earnster data.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Thomas Deitz",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "pg": "^7.4.1",
+    "sequelize": "^4.37.0"
+  },
+  "engines": {
+    "node": "9.2.0",
+    "npm": "5.5.1"
+  }
+}
