@@ -1,16 +1,15 @@
-const parser = require('body-parser');
-const WorkController = require('./controllers/WorkController')
-const WorkerController = require('./controllers/WorkerController')
+const JobsController = require('./controllers/JobsController')
+const WorkersController = require('./controllers/WorkersController')
 
 module.exports = (app) => {
 
   app.get('/work',
-    WorkController.index)
-  app.post('/work', parser.json(),
-    WorkController.post)
+    JobsController.index)
+  app.post('/work',
+    JobsController.post)
   app.delete('/work/:work_id',
-    WorkController.remove)
+    JobsController.remove)
 
   app.get('/worker',
-    WorkerController.index)
+    WorkersController.index)
 }
