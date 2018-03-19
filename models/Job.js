@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true
       },
       job_status: DataTypes.INTEGER,
-      job_value: DataTypes.INTEGER,
+      job_value: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+      },
       worker_id: DataTypes.STRING
     }
   )

@@ -7,7 +7,7 @@ module.exports = {
     Job
       .findAll({
         where: {
-          job_status: {[Op.notIn]:[1, 2, 3]}
+          job_status: 0
         }
       })
       .then(jobs => {
