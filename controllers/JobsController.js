@@ -1,11 +1,10 @@
-const { Client, Pool } = require('pg');
 const config = require('../config/config')
-const {job} = require('../models')
-const {Op} = require('sequelize');
+const { Job } = require('../models')
+const { Op } = require('sequelize');
 
 module.exports = {
   index: (req, res) => { // Gets all available jobs
-    job
+    Job
       .findAll({
         where: {
           work_status: {
@@ -14,33 +13,43 @@ module.exports = {
         }
       })
       .then(jobs => {
-        res.send(jobs);
+        if(jobs){
+          res.status(200).send(jobs)
+        }
+        else
+        {
+          res.status(404).send({message:"Record not found"})
+        }
+      })
+      .catch(function (error){
+        res.status(500).send(error);
       });
-    // "SELECT * FROM work WHERE work_status NOT IN (1);";
-    // "SELECT worker_name, worker_id FROM worker;";
+    // SELECT * FROM work WHERE work_status NOT IN (1)
+    // SELECT worker_name, worker_id FROM worker
   },
 
   post: (req, res) => { // Gets all available jobs
 		req.body.work_status = 0;
-		job
+		Job
 		  .create(req.body)
 		  .then(job => {
   		  	res.send(job)
 		  });
-		// "INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)";
+		// INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)
 	},
 
 	remove: (req, res) => {
-  	job
+  	Job
       .destroy({
         where: {
           work_id: req.params.work_id
         }
       })
       .then(job => {
+        if (err)
         res.send("Job " + req.params.work_id + " has been removed.")
       })
 	  
-    // "DELETE FROM work WHERE work_id = $1";
+    // DELETE FROM work WHERE work_id = $1
   }
 }

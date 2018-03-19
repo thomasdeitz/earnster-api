@@ -12,4 +12,5 @@ module.exports = (app) => {
 
   app.get('/worker',
     WorkersController.index)
+    WorkersController.post)
 }

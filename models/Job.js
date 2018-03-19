@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
   const Job = sequelize.define(
-    'job',
+    'Job',
     {
-      work_description: DataTypes.STRING,
-      work_id: {
+      job_description: DataTypes.STRING,
+      job_id: {
         type: DataTypes.INTEGER,
         unique: true,
         autoIncrement: true,
         primaryKey: true
       },
-      work_status: DataTypes.INTEGER,
-      work_value: DataTypes.INTEGER,
+      job_status: DataTypes.INTEGER,
+      job_value: DataTypes.INTEGER,
       worker_id: DataTypes.STRING
     }
   )

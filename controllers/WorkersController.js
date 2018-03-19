@@ -1,23 +1,41 @@
-const { Client, Pool } = require('pg');
 const config = require('../config/config')
-
-const connectionPool = new Pool({
-  connectionString: config.connectionString,
-  //ssl: true
-});
+const { Worker } = require('../models')
+const { Op } = require('sequelize');
 
 var getWorkers = "SELECT * FROM worker;";
 
 module.exports = {
-  //gets all workers
-  index: (req, res) => {
-    connectionPool.query(getWorkers, (err, result) => {
-      if (err) {
-        console.log(err.stack)
-        res.send({'error': err.stack});
-      } else {
-        res.send({'data': result.rows });
-      }
-    });
+  index: (req, res) => { // Gets all workers
+    Worker
+      .findAll()
+      .then(workers => {
+        if(workers){
+          res.status(200).send(workers)
+        }
+        else
+        {
+          res.status(404).send({message:"Record not found"})
+        }
+      })
+      .catch(function (error){
+        res.status(500).send(error);
+      });
+  },
+  
+  post: (res, req) => { // Create a new worker
+    Worker
+		  .create(req.body)
+		  .then(worker => {
+  		  if(worker){
+          res.status(200).send(worker)
+        }
+        else
+        {
+          res.status(404).send({message:"Record not found"})
+        }
+      })
+      .catch(function (error){
+        res.status(500).send(error);
+      });
   }
 }
