@@ -1,5 +1,5 @@
 const app = require('express')()
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 const http = require('http').Server(app)
 const path = require('path')
 const config = require('./config/config')
