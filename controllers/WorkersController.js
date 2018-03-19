@@ -8,16 +8,16 @@ module.exports = {
       .findAll()
       .then(workers => {
         if(workers){
-          res.status(200).json(workers)
+          res.send(workers)
           console.log(workers)
         }
         else
         {
-          res.status(404).json({message:"Record not found"})
+          res.send({message:"Record not found"})
         }
       })
       .catch(function (error){
-        res.status(500).json(error);
+        res.send(error);
       });
   },
   
@@ -27,15 +27,15 @@ module.exports = {
 		  .create(req.body)
 		  .then(worker => {
   		  if(worker){
-          res.json(worker)
+          res.send(worker)
         }
         else
         {
-          res.status(404).json({message:"Record not found"})
+          res.send({message:"Record not found"})
         }
       })
       .catch(function (error){
-        res.status(500).json(error);
+        res.send(error);
       });
   }
 }
