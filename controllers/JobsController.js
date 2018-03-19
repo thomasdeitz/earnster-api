@@ -7,7 +7,7 @@ module.exports = {
     Job
       .findAll({
         where: {
-          work_status: {
+          job_status: {
             [Op.not]: 1
           }
         }
