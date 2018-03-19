@@ -21,7 +21,7 @@ module.exports = {
       });
   },
   
-  post: (res, req) => { // Create a new worker
+  post: (req, res) => { // Create a new worker
     console.log(req.body);
     Worker
 		  .create(req.body)
