@@ -24,31 +24,26 @@ module.exports = {
         res.send(job[0]);
       });
   },
-  /*index: (req, res) => {
-    var getWork = "SELECT * FROM work WHERE work_status NOT IN (1);";
-    var getWorkers = "SELECT worker_name, worker_id FROM worker;";
-
-    connectionPool.query(getWork + getWorkers, (err, result) => {
-      if (err) {
-        console.log(err.stack)
-        res.send({'error': err.stack});
-      } else {
-        res.send({'data': { work: result[0].rows, workers: result[1].rows } });
-      }
-    });
-  },*/
 
   post: (req, res) => {
-		var addWork = "INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)";
+		// "INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)";
 		var values = [req.body.name, req.body.value, 0];
-		
-		connectionPool.query(addWork, values, (err, result) => {
-      if (err) {
-        console.log(err.stack)
-      } else {
-        res.send(req.body);
-      }
-    });
+		job
+		  .create({
+  		  work_description: eq.body.name, 
+  		  work_value: req.body.value, 
+  		  work_status: 0
+		  })
+		  .then(job => {
+  		  console.log(job)
+		  });
+		//connectionPool.query(addWork, values, (err, result) => {
+      //if (err) {
+        //console.log(err.stack)
+      //} else {
+        //res.send(req.body);
+      //}
+    //});
 	},
 
 	remove: (req, res) => {

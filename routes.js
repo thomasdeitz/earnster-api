@@ -3,11 +3,11 @@ const WorkersController = require('./controllers/WorkersController')
 
 module.exports = (app) => {
 
-  app.get('/work',
+  app.get('/jobs',
     JobsController.index)
-  app.post('/work',
+  app.post('/job',
     JobsController.post)
-  app.delete('/work/:work_id',
+  app.delete('/job/:work_id',
     JobsController.remove)
 
   app.get('/worker',
