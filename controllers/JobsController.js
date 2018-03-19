@@ -29,13 +29,9 @@ module.exports = {
 		// "INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)";
 		var values = [req.body.name, req.body.value, 0];
 		job
-		  .create({
-  		  work_description: eq.body.name, 
-  		  work_value: req.body.value, 
-  		  work_status: 0
-		  })
+		  .create(req.body)
 		  .then(job => {
-  		  console.log(job)
+  		  	console.log(job)
 		  });
 		//connectionPool.query(addWork, values, (err, result) => {
       //if (err) {
