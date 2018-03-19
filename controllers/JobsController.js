@@ -20,8 +20,8 @@ module.exports = {
           }
         }
       })
-      .then(job => {
-        res.send(job[0]);
+      .then(jobs => {
+        res.send(jobs);
       });
   },
 
@@ -31,7 +31,7 @@ module.exports = {
 		job
 		  .create(req.body)
 		  .then(job => {
-  		  	console.log(job)
+  		  	res.send(job)
 		  });
 		//connectionPool.query(addWork, values, (err, result) => {
       //if (err) {
