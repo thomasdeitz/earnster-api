@@ -9,7 +9,6 @@ module.exports = {
       .then(workers => {
         if(workers){
           res.send(workers)
-          console.log(workers)
         }
         else
         {
@@ -47,7 +46,16 @@ module.exports = {
         }
       })
       .then(job => {
-        res.send("Worker " + req.params.worker_id + " has been removed.")
+        if(workers){
+          res.send("Worker " + req.params.worker_id + " has been removed.")
+        }
+        else
+        {
+          res.send({message:"Record not found"})
+        }
       })
+      .catch(function (error){
+        res.send(error);
+      });
   }
 }

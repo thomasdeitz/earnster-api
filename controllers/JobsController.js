@@ -7,13 +7,10 @@ module.exports = {
     Job
       .findAll({
         where: {
-          job_status: {
-            [Op.not]: 1
-          }
+          job_status: {[Op.notIn]:[1, 2, 3]}
         }
       })
       .then(jobs => {
-        console.log(jobs)
         if(jobs){
           res.send(jobs)
         }
@@ -47,8 +44,17 @@ module.exports = {
         }
       })
       .then(job => {
-        res.send("Job " + req.params.job_id + " has been removed.")
+        if(jobs){
+          res.send("Job " + req.params.job_id + " has been removed.")
+        }
+        else
+        {
+          res.send({message:"Record not found"})
+        }
       })
+      .catch(function (error){
+        res.send(error);
+      });
 	  
     // DELETE FROM work WHERE work_id = $1
   }
