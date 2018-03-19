@@ -10,7 +10,8 @@ module.exports = (app) => {
   app.delete('/job/:work_id',
     JobsController.remove)
 
-  app.get('/worker',
+  app.get('/workers',
     WorkersController.index)
+  app.post('/worker',
     WorkersController.post)
 }

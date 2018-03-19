@@ -12,9 +12,9 @@ app.use(bodyParser.json())
 require('./routes')(app)
 
 // listen to port
-sequelize
-  .sync()
-  .then(() => {
+//sequelize
+  //.sync()
+  //.then(() => {
     app.listen(config.port)
     console.log('Server started on port', config.port)
-  })
+  //})
