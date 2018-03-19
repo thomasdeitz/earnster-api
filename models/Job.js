@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
-      job_status: DataTypes.INTEGER,
+      job_status:{
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+      },
       job_value: {
         type: DataTypes.INTEGER,
         defaultValue: 0

@@ -4,7 +4,7 @@ const http = require('http').Server(app)
 const path = require('path')
 const config = require('./config/config')
 const cors = require('cors')
-const {sequelize} = require('./models')
+const { sequelize } = require('./models')
 
 app.use(cors())
 app.use(bodyParser.json())

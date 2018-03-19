@@ -16,16 +16,16 @@ module.exports = {
         }
       })
       .catch(function (error){
-        res.send(error);
+        res.send(error)
       });
   },
-  
+
   post: (req, res) => { // Create a new worker
     console.log(req.body);
     Worker
-		  .create(req.body)
-		  .then(worker => {
-  		  if(worker){
+      .create(req.body)
+      .then(worker => {
+        if(worker){
           res.send(worker)
         }
         else
@@ -34,7 +34,7 @@ module.exports = {
         }
       })
       .catch(function (error){
-        res.send(error);
+        res.send(error)
       });
   },
 
@@ -55,7 +55,7 @@ module.exports = {
         }
       })
       .catch(function (error){
-        res.send(error);
+        res.send(error)
       });
   }
 }
