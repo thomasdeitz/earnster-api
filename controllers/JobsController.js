@@ -38,7 +38,7 @@ module.exports = {
         }
       })
       .then(job => {
-        res.send("Job ", req.params.work_id, "has been removed.")
+        res.send("Job " + req.params.work_id + " has been removed.")
       })
 	  
     // "DELETE FROM work WHERE work_id = $1";
