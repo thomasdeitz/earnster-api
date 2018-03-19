@@ -30,8 +30,7 @@ module.exports = {
     Job
       .create(req.body)
       .then(job => {
-        
-        if(jobs){
+        if(job){
           res.send(job)
         }
         else
@@ -53,7 +52,7 @@ module.exports = {
         }
       })
       .then(job => {
-        if(jobs){
+        if(job){
           res.send("Job " + req.params.job_id + " has been removed.")
         }
         else
