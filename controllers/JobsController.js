@@ -14,15 +14,15 @@ module.exports = {
       })
       .then(jobs => {
         if(jobs){
-          res.status(200).send(jobs)
+          res.status(200).json(jobs)
         }
         else
         {
-          res.status(404).send({message:"Record not found"})
+          res.status(404).json({message:"Record not found"})
         }
       })
       .catch(function (error){
-        res.status(500).send(error);
+        res.status(500).json(error);
       });
     // SELECT * FROM work WHERE work_status NOT IN (1)
     // SELECT worker_name, worker_id FROM worker
@@ -33,7 +33,7 @@ module.exports = {
 		Job
 		  .create(req.body)
 		  .then(job => {
-  		  	res.send(job)
+  		  	res.json(job)
 		  });
 		// INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)
 	},
@@ -46,8 +46,7 @@ module.exports = {
         }
       })
       .then(job => {
-        if (err)
-        res.send("Job " + req.params.work_id + " has been removed.")
+        res.json("Job " + req.params.work_id + " has been removed.")
       })
 	  
     // DELETE FROM work WHERE work_id = $1
