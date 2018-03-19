@@ -13,6 +13,7 @@ module.exports = {
         }
       })
       .then(jobs => {
+        console.log(jobs)
         if(jobs){
           res.send(jobs)
         }
@@ -42,11 +43,11 @@ module.exports = {
   	Job
       .destroy({
         where: {
-          work_id: req.params.work_id
+          job_id: req.params.job_id
         }
       })
       .then(job => {
-        res.send("Job " + req.params.work_id + " has been removed.")
+        res.send("Job " + req.params.job_id + " has been removed.")
       })
 	  
     // DELETE FROM work WHERE work_id = $1

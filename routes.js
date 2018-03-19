@@ -7,11 +7,13 @@ module.exports = (app) => {
     JobsController.index)
   app.post('/job',
     JobsController.post)
-  app.delete('/job/:work_id',
+  app.delete('/job/:job_id',
     JobsController.remove)
 
   app.get('/workers',
     WorkersController.index)
   app.post('/worker',
     WorkersController.post)
+  app.delete('/worker/:worker_id',
+    WorkersController.remove)
 }

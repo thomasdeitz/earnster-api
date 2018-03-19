@@ -37,5 +37,17 @@ module.exports = {
       .catch(function (error){
         res.send(error);
       });
+  },
+
+	remove: (req, res) => {
+  	Worker
+      .destroy({
+        where: {
+          worker_id: req.params.worker_id
+        }
+      })
+      .then(job => {
+        res.send("Worker " + req.params.worker_id + " has been removed.")
+      })
   }
 }
