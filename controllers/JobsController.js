@@ -2,16 +2,9 @@ const { Client, Pool } = require('pg');
 const config = require('../config/config')
 const {job} = require('../models')
 const {Op} = require('sequelize');
-const connectionPool = new Pool({
-  connectionString: config.connectionString,
-  //ssl: true
-});
 
 module.exports = {
-  //gets all work Items
-  index: (req, res) => {
-    // "SELECT * FROM work WHERE work_status NOT IN (1);";
-    // "SELECT worker_name, worker_id FROM worker;";
+  index: (req, res) => { // Gets all available jobs
     job
       .findAll({
         where: {
@@ -23,35 +16,31 @@ module.exports = {
       .then(jobs => {
         res.send(jobs);
       });
+    // "SELECT * FROM work WHERE work_status NOT IN (1);";
+    // "SELECT worker_name, worker_id FROM worker;";
   },
 
-  post: (req, res) => {
-		// "INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)";
-		var values = [req.body.name, req.body.value, 0];
+  post: (req, res) => { // Gets all available jobs
+		req.body.work_status = 0;
 		job
 		  .create(req.body)
 		  .then(job => {
   		  	res.send(job)
 		  });
-		//connectionPool.query(addWork, values, (err, result) => {
-      //if (err) {
-        //console.log(err.stack)
-      //} else {
-        //res.send(req.body);
-      //}
-    //});
+		// "INSERT INTO work (work_description, work_value, work_status) VALUES ($1, $2, $3)";
 	},
 
 	remove: (req, res) => {
-  	var sql = "DELETE FROM work WHERE work_id = $1";
-	  var values = [req.params.work_id];
-	  console.log(sql, values);
-	  connectionPool.query(sql, values, (err, result) => {
-	    if (err) {
-        console.log(err.stack)
-      } else {
-        res.send(req.body);
-      }
-		});
+  	job
+      .destroy({
+        where: {
+          work_id: req.params.work_id
+        }
+      })
+      .then(job => {
+        res.send(job)
+      })
+	  
+    // "DELETE FROM work WHERE work_id = $1";
   }
 }
